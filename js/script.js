@@ -1,6 +1,27 @@
+/** @format */
+
 window.onload = function () {
+  // 메뉴기능
+  const nav = document.querySelector('.nav');
+  const btMenu = document.querySelector('.bt-menu');
+  const navClose = document.querySelector('.nav-close');
+
+  btMenu.addEventListener('click', function () {
+    // 클래스를 nav에 추가하고 싶다.
+    nav.classList.add('nav-active');
+  });
+
+  navClose.addEventListener('click', function () {
+    // 클래스를 nav에 삭제하고 싶다.
+    nav.classList.remove('nav-active');
+  });
+  // nav 영역을 벗어나는 이벤트 발생처리
+  nav.addEventListener('mouseleave', function () {
+    nav.classList.remove('nav-active');
+  });
+
   //  비디오 항목 체크 (video 태그로 파악)
-  let videos = document.querySelectorAll(".swVisual video");
+  let videos = document.querySelectorAll('.swVisual video');
   // console.log(videos);
   //  비디오 시간 체크
   let videosTimeArr = [];
@@ -15,11 +36,11 @@ window.onload = function () {
   videos[videoIndex].play();
 
   // Visual Slide
-  let swVisual = new Swiper(".swVisual", {
+  let swVisual = new Swiper('.swVisual', {
     loop: true,
   });
   // 슬라이드 변경 이벤트시 처리
-  swVisual.on("slideChange", function () {
+  swVisual.on('slideChange', function () {
     // console.log("슬라이드 교체");
     // 진행중인 비디오 멈춤
     videos[videoIndex].pause();
@@ -39,7 +60,7 @@ window.onload = function () {
   });
   // 비디오 영상이 플레이가 끝나면 다음 슬라이드로 이동
   // 늘어나는 흰색 bar
-  let bars = document.querySelectorAll(".bar");
+  let bars = document.querySelectorAll('.bar');
   // console.log(bars);
   // 늘어나는 길이를 위한 값(최대 100)
   let barScaleW = 0;
@@ -81,4 +102,22 @@ window.onload = function () {
     }, videoTime * 10);
   }
   videoReset();
+
+  // .visual-control > li 선택한다.
+  const visualControlLi = document.querySelectorAll('.visual-control > li');
+  // 클릭 이벤트를 처리하는 이벤트핸들러(약속된 함수)를 작성한다.
+  // : 이벤트(click)
+  // : 이벤트핸들러(addEventLisenter)
+  // visualControlLi[0].addEventListener("click", function(){})
+  visualControlLi.forEach((item, index) => {
+    item.addEventListener('click', function () {
+      // 클릭을 했을 때 슬라이드 번호로 점프한다.
+      //console.log(index); //디스라고 적으면 점 앞에꺼 지금은  item
+      videoIndex = index;
+      // Swiper 슬라이드를 직접 점프시킨다
+      // Swiper에 내장된 함수를 작성
+      // 슬라이드명.slideTo(번호)
+      swVisual.slideTo(videoIndex);
+    });
+  });
 };
