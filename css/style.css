@@ -1,7 +1,5 @@
-/** @format */
-
 @charset "utf-8";
-@import url('font.css');
+@import url("font.css");
 * {
   margin: 0;
   padding: 0;
@@ -33,9 +31,9 @@ html {
   background-color: rgba(0, 0, 0, 0.1);
 }
 body {
-  font-family: Pretendard, 'Nanum Myeongjo', -apple-system, BlinkMacSystemFont,
-    system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
-    'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-family: Pretendard, "Nanum Myeongjo", -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", sans-serif;
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.64px;
@@ -48,7 +46,7 @@ body {
 }
 /* 안내창 */
 body {
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 body.active {
   overflow-y: auto;
@@ -123,7 +121,7 @@ body.active {
   display: block;
   width: 23px;
   height: 23px;
-  background: url('../images/close2.png') no-repeat center;
+  background: url("../images/close2.png") no-repeat center;
   cursor: pointer;
   border: none;
   font-size: 0;
@@ -213,9 +211,9 @@ body.active {
   cursor: pointer;
 }
 .language-word::after {
-  content: '';
+  content: "";
   display: inline-block;
-  background: url('../images/select_icon2.png') no-repeat;
+  background: url("../images/select_icon2.png") no-repeat;
   background-size: cover;
   width: 8px;
   height: 7px;
@@ -305,7 +303,7 @@ body.active {
   cursor: pointer;
 }
 .visual-control li::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -355,7 +353,7 @@ body.active {
 }
 
 .news-logo {
-  font-family: Pretendard, 'Nanum Myeongjo';
+  font-family: Pretendard, "Nanum Myeongjo";
   font-size: 70px;
   font-weight: 600;
   letter-spacing: -2.5px;
@@ -363,7 +361,7 @@ body.active {
 }
 
 .news-desc {
-  font-family: Pretendard, 'Nanum Myeongjo';
+  font-family: Pretendard, "Nanum Myeongjo";
   font-size: 20px;
   font-weight: 400;
   letter-spacing: -0.5px;
@@ -382,13 +380,13 @@ body.active {
   margin-top: 12%;
 }
 .news-more::after {
-  content: '';
+  content: "";
   position: absolute;
   right: 0;
   top: -8px;
   width: 36px;
   height: 25px;
-  background: url('../images/more2.png') no-repeat center;
+  background: url("../images/more2.png") no-repeat center;
 }
 
 .news-bottom {
@@ -479,27 +477,27 @@ body.active {
   overflow: hidden;
 }
 .business-img-1 {
-  background: url('../images/business01.png') no-repeat center;
+  background: url("../images/business01.png") no-repeat center;
   background-size: cover;
 }
 .business-img-2 {
-  background: url('../images/business02.png') no-repeat center;
+  background: url("../images/business02.png") no-repeat center;
   background-size: cover;
 }
 .business-img-3 {
-  background: url('../images/business03.png') no-repeat center;
+  background: url("../images/business03.png") no-repeat center;
   background-size: cover;
 }
 .business-img-4 {
-  background: url('../images/business04.png') no-repeat center;
+  background: url("../images/business04.png") no-repeat center;
   background-size: cover;
 }
 .business-img-5 {
-  background: url('../images/business05.png') no-repeat center;
+  background: url("../images/business05.png") no-repeat center;
   background-size: cover;
 }
 .business-img-6 {
-  background: url('../images/business06.png') no-repeat center;
+  background: url("../images/business06.png") no-repeat center;
   background-size: cover;
 }
 .swBusiness .inner {
@@ -568,13 +566,13 @@ body.active {
   transform: translateY(100px);
 }
 .business-txt a::after {
-  content: '';
+  content: "";
   position: absolute;
   right: 0;
   top: -8px;
   width: 36px;
   height: 25px;
-  background: url('../images/more.png') no-repeat center;
+  background: url("../images/more.png") no-repeat center;
 }
 
 .swBusiness .swiper-slide-active .business-txt a {

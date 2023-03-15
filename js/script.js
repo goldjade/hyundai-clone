@@ -1,89 +1,131 @@
-/** @format */
-
 window.onload = function () {
-  // 모달창
-  let body = document.querySelector('body');
-  let modal = document.querySelector('.modal');
-  modal.addEventListener('click', function () {
-    modal.style.display = 'none';
-    body.classList.add('active');
-  });
+  AOS.init();
 
+  // ** FADE OUT FUNCTION **
+  // fadeOut( element : document.querySelctor(대상) )
+  function fadeOut(el) {
+    // 대상.style.투명도 = 불투명
+    el.style.opacity = 1;
+    (function fade() {
+      // 대상.style.투명도 -= 0.1 감소
+      if ((el.style.opacity -= 0.1) < 0) {
+        el.style.display = "none";
+      } else {
+        // 웹브라우저 프레임갱신
+        requestAnimationFrame(fade);
+      }
+    })();
+  }
+
+  // ** FADE IN FUNCTION **
+  // fadeIn( element : document.querySelctor(대상) )
+  function fadeIn(el, display) {
+    el.style.opacity = 0;
+    el.style.display = display || "block";
+    (function fade() {
+      var val = parseFloat(el.style.opacity);
+      if (!((val += 0.1) > 1)) {
+        el.style.opacity = val;
+        requestAnimationFrame(fade);
+      }
+    })();
+  }
+
+  // 모달창
+  let body = document.querySelector("body");
+  let modal = document.querySelector(".modal");
+  modal.addEventListener("click", function () {
+    // modal.style.display = "none";
+    // fadeOut(modal);
+    anime({
+      targets: ".modal",
+      delay: 200,
+      duration: 500,
+      opacity: 0,
+      easing: "easeInOutQuad",
+      complete: function () {
+        modal.style.display = "none";
+        body.classList.add("active");
+      },
+    });
+  });
   // 스크롤 기능
-  let scy = 0; // 스크롤바의 상단위치
+  // 스크롤바의 상단위치
+  let scy = 0;
   let scActive = 50;
   scy = window.document.documentElement.scrollTop;
 
-  let header = document.querySelector('.header');
-  let logoW = document.querySelector('.logo-w');
-  let logoG = document.querySelector('.logo-g');
+  let header = document.querySelector(".header");
+  let logoW = document.querySelector(".logo-w");
+  let logoG = document.querySelector(".logo-g");
 
-  header.addEventListener('mouseenter', function () {
-    header.classList.add('header-active');
-    logoW.style.display = 'none';
-    logoG.style.display = 'block';
+  header.addEventListener("mouseenter", function () {
+    header.classList.add("header-active");
+    logoW.style.display = "none";
+    logoG.style.display = "block";
   });
-  header.addEventListener('mouseleave', function () {
+  header.addEventListener("mouseleave", function () {
     if (scy < scActive) {
-      header.classList.remove('header-active');
-      logoW.style.display = 'block';
-      logoG.style.display = 'none';
+      header.classList.remove("header-active");
+      logoW.style.display = "block";
+      logoG.style.display = "none";
     }
   });
 
   // 새로고침 시
   if (scy > scActive) {
-    header.classList.add('header-active');
-    logoW.style.display = 'none';
-    logoG.style.display = 'block';
+    header.classList.add("header-active");
+    logoW.style.display = "none";
+    logoG.style.display = "block";
   }
 
-  window.addEventListener('scroll', function () {
+  window.addEventListener("scroll", function () {
     scy = window.document.documentElement.scrollTop;
     // console.log("스크롤 : " + scy);
     if (scy > scActive) {
-      header.classList.add('header-active');
-      logoW.style.display = 'none';
-      logoG.style.display = 'block';
+      header.classList.add("header-active");
+      logoW.style.display = "none";
+      logoG.style.display = "block";
     } else {
-      header.classList.remove('header-active');
-      logoW.style.display = 'block';
-      logoG.style.display = 'none';
+      header.classList.remove("header-active");
+      logoW.style.display = "block";
+      logoG.style.display = "none";
     }
   });
 
   // 펼침 언어 기능
-  const langWord = document.querySelector('.language-word');
-  const language = document.querySelector('.language');
-  const languageLi = document.querySelector('.language li');
+  const langWord = document.querySelector(".language-word");
+  const language = document.querySelector(".language");
+  const languageLi = document.querySelector(".language li");
   setTimeout(function () {
-    languageLi.style.transition = 'all 0.2s';
+    languageLi.style.transition = "all 0.2s";
   }, 500);
-  langWord.addEventListener('click', function () {
-    language.classList.toggle('language-box-active');
+
+  langWord.addEventListener("click", function () {
+    language.classList.toggle("language-box-active");
   });
   // 메뉴기능
-  const nav = document.querySelector('.nav');
-  const btMenu = document.querySelector('.bt-menu');
-  const navClose = document.querySelector('.nav-close');
+  const nav = document.querySelector(".nav");
+  const btMenu = document.querySelector(".bt-menu");
+  const navClose = document.querySelector(".nav-close");
 
-  btMenu.addEventListener('click', function () {
+  btMenu.addEventListener("click", function () {
     // 클래스를 nav에 추가하고 싶다.
-    nav.classList.add('nav-active');
+    nav.classList.add("nav-active");
   });
 
-  navClose.addEventListener('click', function () {
+  navClose.addEventListener("click", function () {
     // 클래스를 nav에 삭제하고 싶다.
-    nav.classList.remove('nav-active');
+    nav.classList.remove("nav-active");
   });
 
   // nav 영역을 벗어나는 이벤트 발생처리
-  nav.addEventListener('mouseleave', function () {
-    nav.classList.remove('nav-active');
+  nav.addEventListener("mouseleave", function () {
+    nav.classList.remove("nav-active");
   });
 
   //  비디오 항목 체크 (video 태그로 파악)
-  let videos = document.querySelectorAll('.swVisual video');
+  let videos = document.querySelectorAll(".swVisual video");
   // console.log(videos);
   //  비디오 시간 체크
   let videosTimeArr = [];
@@ -98,11 +140,11 @@ window.onload = function () {
   videos[videoIndex].play();
 
   // Visual Slide
-  let swVisual = new Swiper('.swVisual', {
+  let swVisual = new Swiper(".swVisual", {
     loop: true,
   });
   // 슬라이드 변경 이벤트시 처리
-  swVisual.on('slideChange', function () {
+  swVisual.on("slideChange", function () {
     // console.log("슬라이드 교체");
     // 진행중인 비디오 멈춤
     videos[videoIndex].pause();
@@ -128,7 +170,7 @@ window.onload = function () {
   });
   // 비디오 영상이 플레이가 끝나면 다음 슬라이드로 이동
   // 늘어나는 흰색 bar
-  let bars = document.querySelectorAll('.bar');
+  let bars = document.querySelectorAll(".bar");
   // console.log(bars);
   // 늘어나는 길이를 위한 값(최대 100)
   let barScaleW = 0;
@@ -172,13 +214,13 @@ window.onload = function () {
   videoReset();
 
   // .visual-control > li 선택한다.
-  const visualControlLi = document.querySelectorAll('.visual-control > li');
+  const visualControlLi = document.querySelectorAll(".visual-control > li");
   // 클릭 이벤트를 처리하는 이벤트핸들러(약속된 함수)를 작성한다.
   // : 이벤트(click)
   // : 이벤트핸들러(addEventLisenter)
   // visualControlLi[0].addEventListener("click", function(){})
   visualControlLi.forEach((item, index) => {
-    item.addEventListener('click', function () {
+    item.addEventListener("click", function () {
       // 클릭을 했을 때 슬라이드 번호로 점프한다.
       console.log(index);
       videoIndex = index;
@@ -190,7 +232,7 @@ window.onload = function () {
   });
 
   // 비즈니스 슬라이드
-  const swBusiness = new Swiper('.swBusiness', {
+  const swBusiness = new Swiper(".swBusiness", {
     loop: true,
     speed: 500,
     autoplay: {
