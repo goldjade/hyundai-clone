@@ -65,9 +65,20 @@ body.active {
 }
 .modal-box {
   width: 600px;
-  height: 450px;
+  height: 250px;
   background-color: #fff;
   border-radius: 20px;
+  padding: 30px;
+}
+.modal-box .modal-title {
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.modal-box .modal-text {
+  font-size: 20px;
+  line-height: 30px;
 }
 /* 공통요소 */
 
